@@ -1,0 +1,852 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+
+
+<script type="text/javascript" src="/static/js/analytics.js"></script>
+<script type="text/javascript">archive_analytics.values.server_name="wwwb-app1.us.archive.org";archive_analytics.values.server_ms=484;</script>
+<link type="text/css" rel="stylesheet" href="/static/css/banner-styles.css"/>
+
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils 0.4.1: http://docutils.sourceforge.net/" />
+<title>OpenMicroBlogging specification</title>
+<meta name="author" content="Evan Prodromou (Control Yourself, Inc.)" />
+<meta name="date" content="2008-07-07" />
+<meta name="copyright" content="To the extent possible under law, Control Yourself, Inc has waived all copyright, moral rights, database rights, and any other rights that might be asserted over The OpenMicroBlogging specification." />
+<style type="text/css">
+
+/*
+:Author: David Goodger
+:Contact: goodger@users.sourceforge.net
+:Date: $Date: 2005-12-18 01:56:14 +0100 (Sun, 18 Dec 2005) $
+:Revision: $Revision: 4224 $
+:Copyright: This stylesheet has been placed in the public domain.
+
+Default cascading style sheet for the HTML output of Docutils.
+
+See http://docutils.sf.net/docs/howto/html-stylesheets.html for how to
+customize this style sheet.
+*/
+
+/* used to remove borders from tables and images */
+.borderless, table.borderless td, table.borderless th {
+  border: 0 }
+
+table.borderless td, table.borderless th {
+  /* Override padding for "table.docutils td" with "! important".
+     The right padding separates the table cells. */
+  padding: 0 0.5em 0 0 ! important }
+
+.first {
+  /* Override more specific margin styles with "! important". */
+  margin-top: 0 ! important }
+
+.last, .with-subtitle {
+  margin-bottom: 0 ! important }
+
+.hidden {
+  display: none }
+
+a.toc-backref {
+  text-decoration: none ;
+  color: black }
+
+blockquote.epigraph {
+  margin: 2em 5em ; }
+
+dl.docutils dd {
+  margin-bottom: 0.5em }
+
+/* Uncomment (and remove this text!) to get bold-faced definition list terms
+dl.docutils dt {
+  font-weight: bold }
+*/
+
+div.abstract {
+  margin: 2em 5em }
+
+div.abstract p.topic-title {
+  font-weight: bold ;
+  text-align: center }
+
+div.admonition, div.attention, div.caution, div.danger, div.error,
+div.hint, div.important, div.note, div.tip, div.warning {
+  margin: 2em ;
+  border: medium outset ;
+  padding: 1em }
+
+div.admonition p.admonition-title, div.hint p.admonition-title,
+div.important p.admonition-title, div.note p.admonition-title,
+div.tip p.admonition-title {
+  font-weight: bold ;
+  font-family: sans-serif }
+
+div.attention p.admonition-title, div.caution p.admonition-title,
+div.danger p.admonition-title, div.error p.admonition-title,
+div.warning p.admonition-title {
+  color: red ;
+  font-weight: bold ;
+  font-family: sans-serif }
+
+/* Uncomment (and remove this text!) to get reduced vertical space in
+   compound paragraphs.
+div.compound .compound-first, div.compound .compound-middle {
+  margin-bottom: 0.5em }
+
+div.compound .compound-last, div.compound .compound-middle {
+  margin-top: 0.5em }
+*/
+
+div.dedication {
+  margin: 2em 5em ;
+  text-align: center ;
+  font-style: italic }
+
+div.dedication p.topic-title {
+  font-weight: bold ;
+  font-style: normal }
+
+div.figure {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+div.footer, div.header {
+  clear: both;
+  font-size: smaller }
+
+div.line-block {
+  display: block ;
+  margin-top: 1em ;
+  margin-bottom: 1em }
+
+div.line-block div.line-block {
+  margin-top: 0 ;
+  margin-bottom: 0 ;
+  margin-left: 1.5em }
+
+div.sidebar {
+  margin-left: 1em ;
+  border: medium outset ;
+  padding: 1em ;
+  background-color: #ffffee ;
+  width: 40% ;
+  float: right ;
+  clear: right }
+
+div.sidebar p.rubric {
+  font-family: sans-serif ;
+  font-size: medium }
+
+div.system-messages {
+  margin: 5em }
+
+div.system-messages h1 {
+  color: red }
+
+div.system-message {
+  border: medium outset ;
+  padding: 1em }
+
+div.system-message p.system-message-title {
+  color: red ;
+  font-weight: bold }
+
+div.topic {
+  margin: 2em }
+
+h1.section-subtitle, h2.section-subtitle, h3.section-subtitle,
+h4.section-subtitle, h5.section-subtitle, h6.section-subtitle {
+  margin-top: 0.4em }
+
+h1.title {
+  text-align: center }
+
+h2.subtitle {
+  text-align: center }
+
+hr.docutils {
+  width: 75% }
+
+img.align-left {
+  clear: left }
+
+img.align-right {
+  clear: right }
+
+ol.simple, ul.simple {
+  margin-bottom: 1em }
+
+ol.arabic {
+  list-style: decimal }
+
+ol.loweralpha {
+  list-style: lower-alpha }
+
+ol.upperalpha {
+  list-style: upper-alpha }
+
+ol.lowerroman {
+  list-style: lower-roman }
+
+ol.upperroman {
+  list-style: upper-roman }
+
+p.attribution {
+  text-align: right ;
+  margin-left: 50% }
+
+p.caption {
+  font-style: italic }
+
+p.credits {
+  font-style: italic ;
+  font-size: smaller }
+
+p.label {
+  white-space: nowrap }
+
+p.rubric {
+  font-weight: bold ;
+  font-size: larger ;
+  color: maroon ;
+  text-align: center }
+
+p.sidebar-title {
+  font-family: sans-serif ;
+  font-weight: bold ;
+  font-size: larger }
+
+p.sidebar-subtitle {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+p.topic-title {
+  font-weight: bold }
+
+pre.address {
+  margin-bottom: 0 ;
+  margin-top: 0 ;
+  font-family: serif ;
+  font-size: 100% }
+
+pre.literal-block, pre.doctest-block {
+  margin-left: 2em ;
+  margin-right: 2em ;
+  background-color: #eeeeee }
+
+span.classifier {
+  font-family: sans-serif ;
+  font-style: oblique }
+
+span.classifier-delimiter {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+span.interpreted {
+  font-family: sans-serif }
+
+span.option {
+  white-space: nowrap }
+
+span.pre {
+  white-space: pre }
+
+span.problematic {
+  color: red }
+
+span.section-subtitle {
+  /* font-size relative to parent (h1..h6 element) */
+  font-size: 80% }
+
+table.citation {
+  border-left: solid 1px gray;
+  margin-left: 1px }
+
+table.docinfo {
+  margin: 2em 4em }
+
+table.docutils {
+  margin-top: 0.5em ;
+  margin-bottom: 0.5em }
+
+table.footnote {
+  border-left: solid 1px black;
+  margin-left: 1px }
+
+table.docutils td, table.docutils th,
+table.docinfo td, table.docinfo th {
+  padding-left: 0.5em ;
+  padding-right: 0.5em ;
+  vertical-align: top }
+
+table.docutils th.field-name, table.docinfo th.docinfo-name {
+  font-weight: bold ;
+  text-align: left ;
+  white-space: nowrap ;
+  padding-left: 0 }
+
+h1 tt.docutils, h2 tt.docutils, h3 tt.docutils,
+h4 tt.docutils, h5 tt.docutils, h6 tt.docutils {
+  font-size: 100% }
+
+tt.docutils {
+  background-color: #eeeeee }
+
+ul.auto-toc {
+  list-style-type: none }
+
+</style>
+</head>
+<body>
+
+
+<!-- BEGIN WAYBACK TOOLBAR INSERT -->
+<script type="text/javascript" src="/static/js/disclaim-element.js" ></script>
+<script type="text/javascript" src="/static/js/graph-calc.js" ></script>
+<script type="text/javascript" src="/static/jflot/jquery.min.js" ></script>
+<script type="text/javascript">//<![CDATA[
+var __wm = (function(){
+var wbPrefix = "/web/";
+var wbCurrentUrl = "http://openmicroblogging.org/";
+
+var firstYear = 1996;
+var imgWidth = 500,imgHeight = 27;
+var yearImgWidth = 25,monthImgWidth = 2;
+var displayDay = "12";
+var displayMonth = "Sep";
+var displayYear = "2008";
+var prettyMonths = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+var $D=document,$=function(n){return document.getElementById(n)};
+var trackerVal,curYear = -1,curMonth = -1;
+var yearTracker,monthTracker;
+function showTrackers(val) {
+  if (val===trackerVal) return;
+  var $ipp=$("wm-ipp");
+  var $y=$("displayYearEl"),$m=$("displayMonthEl"),$d=$("displayDayEl");
+  if (val) {
+    $ipp.className="hi";
+  } else {
+    $ipp.className="";
+    $y.innerHTML=displayYear;$m.innerHTML=displayMonth;$d.innerHTML=displayDay;
+  }
+  yearTracker.style.display=val?"inline":"none";
+  monthTracker.style.display=val?"inline":"none";
+  trackerVal = val;
+}
+function getElementX2(obj) {
+  var $e=jQuery(obj);
+  return (typeof $e=="undefined"||typeof $e.offset=="undefined")?
+    getElementX(obj):Math.round($e.offset().left);
+}
+function trackMouseMove(event,element) {
+  var eventX = getEventX(event);
+  var elementX = getElementX2(element);
+  var xOff = Math.min(Math.max(0, eventX - elementX),imgWidth);
+  var monthOff = xOff % yearImgWidth;
+
+  var year = Math.floor(xOff / yearImgWidth);
+  var monthOfYear = Math.min(11,Math.floor(monthOff / monthImgWidth));
+  // 1 extra border pixel at the left edge of the year:
+  var month = (year * 12) + monthOfYear;
+  var day = monthOff % 2==1?15:1;
+  var dateString = zeroPad(year + firstYear) + zeroPad(monthOfYear+1,2) +
+    zeroPad(day,2) + "000000";
+
+  $("displayYearEl").innerHTML=year+firstYear;
+  $("displayMonthEl").innerHTML=prettyMonths[monthOfYear];
+  // looks too jarring when it changes..
+  //$("displayDayEl").innerHTML=zeroPad(day,2);
+  var url = wbPrefix + dateString + '/' +  wbCurrentUrl;
+  $("wm-graph-anchor").href=url;
+
+  if(curYear != year) {
+    var yrOff = year * yearImgWidth;
+    yearTracker.style.left = yrOff + "px";
+    curYear = year;
+  }
+  if(curMonth != month) {
+    var mtOff = year + (month * monthImgWidth) + 1;
+    monthTracker.style.left = mtOff + "px";
+    curMonth = month;
+  }
+}
+function hideToolbar() {
+  $("wm-ipp").style.display="none";
+}
+function bootstrap() {
+  var $spk=$("wm-ipp-sparkline");
+  yearTracker=$D.createElement('div');
+  yearTracker.className='yt';
+  with(yearTracker.style){
+    display='none';width=yearImgWidth+"px";height=imgHeight+"px";
+  }
+  monthTracker=$D.createElement('div');
+  monthTracker.className='mt';
+  with(monthTracker.style){
+    display='none';width=monthImgWidth+"px";height=imgHeight+"px";
+  }
+  $spk.appendChild(yearTracker);
+  $spk.appendChild(monthTracker);
+
+  var $ipp=$("wm-ipp");
+  $ipp&&disclaimElement($ipp);
+}
+return{st:showTrackers,mv:trackMouseMove,h:hideToolbar,bt:bootstrap};
+})();//]]>
+</script>
+<style type="text/css">
+body {
+  margin-top:0 !important;
+  padding-top:0 !important;
+  min-width:800px !important;
+}
+</style>
+<div id="wm-ipp" lang="en" style="display:none;">
+
+<div style="position:fixed;left:0;top:0;width:100%!important">
+<div id="wm-ipp-inside">
+   <table style="width:100%;"><tbody><tr>
+   <td id="wm-logo">
+       <a href="/web/" title="Wayback Machine home page"><img src="/static/images/toolbar/wayback-toolbar-logo.png" alt="Wayback Machine" width="110" height="39" border="0" /></a>
+   </td>
+   <td class="c">
+       <table style="margin:0 auto;"><tbody><tr>
+       <td class="u" colspan="2">
+       <form target="_top" method="get" action="/web/form-submit.jsp" name="wmtb" id="wmtb"><input type="text" name="url" id="wmtbURL" value="http://openmicroblogging.org/" style="width:400px;" onfocus="this.focus();this.select();" /><input type="hidden" name="type" value="replay" /><input type="hidden" name="date" value="20080912062848" /><input type="submit" value="Go" /><span id="wm_tb_options" style="display:block;"></span></form>
+       </td>
+       <td class="n" rowspan="2">
+           <table><tbody>
+           <!-- NEXT/PREV MONTH NAV AND MONTH INDICATOR -->
+           <tr class="m">
+           	<td class="b" nowrap="nowrap">
+		
+		    Aug
+		
+		</td>
+		<td class="c" id="displayMonthEl" title="You are here: 6:28:48 Sep 12, 2008">SEP</td>
+		<td class="f" nowrap="nowrap">
+		
+		    <a href="/web/20081104114929/http://openmicroblogging.org/?" title="4 Nov 2008"><strong>NOV</strong></a>
+		
+                </td>
+	    </tr>
+           <!-- NEXT/PREV CAPTURE NAV AND DAY OF MONTH INDICATOR -->
+           <tr class="d">
+               <td class="b" nowrap="nowrap">
+               
+                   <a href="/web/20080911055100/http://openmicroblogging.org/" title="5:51:00 Sep 11, 2008"><img src="/static/images/toolbar/wm_tb_prv_on.png" alt="Previous capture" width="14" height="16" border="0" /></a>
+               
+               </td>
+               <td class="c" id="displayDayEl" style="width:34px;font-size:24px;" title="You are here: 6:28:48 Sep 12, 2008">12</td>
+	       <td class="f" nowrap="nowrap">
+               
+		   <a href="/web/20081104114929/http://openmicroblogging.org/?" title="11:49:29 Nov 4, 2008"><img src="/static/images/toolbar/wm_tb_nxt_on.png" alt="Next capture" width="14" height="16" border="0" /></a>
+	       
+	       </td>
+           </tr>
+           <!-- NEXT/PREV YEAR NAV AND YEAR INDICATOR -->
+           <tr class="y">
+	       <td class="b" nowrap="nowrap">
+               
+                   2007
+               
+               </td>
+               <td class="c" id="displayYearEl" title="You are here: 6:28:48 Sep 12, 2008">2008</td>
+	       <td class="f" nowrap="nowrap">
+               
+	           <a href="/web/20090918132425/http://openmicroblogging.org/" title="18 Sep 2009"><strong>2009</strong></a>
+	       
+	       </td>
+           </tr>
+           </tbody></table>
+       </td>
+       </tr>
+       <tr>
+       <td class="s">
+           <a class="t" href="/web/20080912062848*/http://openmicroblogging.org/" title="See a list of every capture for this URL">77 captures</a>
+           <div class="r" title="Timespan for captures of this URL">28 Aug 08 - 16 Mrz 15</div>
+       </td>
+       <td class="k">
+       <a href="" id="wm-graph-anchor">
+       <div id="wm-ipp-sparkline" title="Explore captures for this URL">
+	 <img id="sparklineImgId" alt="sparklines"
+		 onmouseover="__wm.st(1)" onmouseout="__wm.st(0)"
+		 onmousemove="__wm.mv(event,this)"
+		 width="500"
+		 height="27"
+		 border="0"
+		 src="/web/jsp/graph.jsp?graphdata=500_27_1996:-1:000000000000_1997:-1:000000000000_1998:-1:000000000000_1999:-1:000000000000_2000:-1:000000000000_2001:-1:000000000000_2002:-1:000000000000_2003:-1:000000000000_2004:-1:000000000000_2005:-1:000000000000_2006:-1:000000000000_2007:-1:000000000000_2008:8:00000005b014_2009:-1:131001132102_2010:-1:312003101011_2011:-1:101020243311_2012:-1:000000000000_2013:-1:000000000000_2014:-1:000000111002_2015:-1:311000000000" />
+       </div>
+       </a>
+       </td>
+       </tr></tbody></table>
+   </td>
+   <td class="r">
+       <a href="#close" onclick="__wm.h();return false;" style="background-image:url(/static/images/toolbar/wm_tb_close.png);top:5px;" title="Close the toolbar">Close</a>
+       <a href="http://faq.web.archive.org/" style="background-image:url(/static/images/toolbar/wm_tb_help.png);bottom:5px;" title="Get some help using the Wayback Machine">Help</a>
+   </td>
+   </tr></tbody></table>
+</div>
+</div>
+</div>
+<script type="text/javascript">__wm.bt();</script>
+<!-- END WAYBACK TOOLBAR INSERT -->
+
+<div class="document" id="openmicroblogging-specification">
+<h1 class="title">OpenMicroBlogging specification</h1>
+<table class="docinfo" frame="void" rules="none">
+<col class="docinfo-name" />
+<col class="docinfo-content" />
+<tbody valign="top">
+<tr><th class="docinfo-name">Author:</th>
+<td>Evan Prodromou (Control Yourself, Inc.)</td></tr>
+<tr><th class="docinfo-name">Contact:</th>
+<td><a class="first last reference" href="mailto:evan@controlezvous.ca">evan&#64;controlezvous.ca</a></td></tr>
+<tr><th class="docinfo-name">Revision:</th>
+<td>0.1.1</td></tr>
+<tr><th class="docinfo-name">Date:</th>
+<td>2008-07-07</td></tr>
+<tr><th class="docinfo-name">Copyright:</th>
+<td>To the extent possible under law, Control Yourself, Inc
+has waived all copyright, moral rights, database rights,
+and any other rights that might be asserted over
+The OpenMicroBlogging specification.</td></tr>
+</tbody>
+</table>
+<div class="section">
+<h1><a id="purpose" name="purpose">Purpose</a></h1>
+<p>To allow users of one microblogging service to publish notices to
+users of another service, given the other users' permission.</p>
+</div>
+<div class="section">
+<h1><a id="enabling-technologies" name="enabling-technologies">Enabling technologies</a></h1>
+<p>Depends on OAuth 1.0, OAuth Discovery 1.0, YADIS 1.0.</p>
+<p>We piggy-back additional information onto these protocols to pass
+microblogging information back and forth.</p>
+</div>
+<div class="section">
+<h1><a id="terminology" name="terminology">Terminology</a></h1>
+<dl class="docutils">
+<dt>microblogging service</dt>
+<dd>undefined.</dd>
+<dt>user</dt>
+<dd>undefined.</dd>
+<dt>listen</dt>
+<dd>to allow a remote service to send notices to the user's local
+service on a remote user's behalf.</dd>
+<dt>listener</dt>
+<dd>the person listening.</dd>
+<dt>listenee</dt>
+<dd>the user sending notices.</dd>
+<dt>remote service</dt>
+<dd>the listenee's microblogging service.</dd>
+<dt>local service</dt>
+<dd>the listener's microblogging service.</dd>
+<dt>profile URL</dt>
+<dd>&quot;home&quot; URL for the listener, typically their profile page on a
+microblogging site.</dd>
+<dt>nickname</dt>
+<dd>An alphanumeric short name for a person, 1-64 characters.</dd>
+<dt>identifier URI</dt>
+<dd>A globally unique and unchanging identifying URI for a user.
+Need not be an URL. <a class="footnote-reference" href="#id3" id="id1" name="id1">[*]</a></dd>
+<dt>notice URI</dt>
+<dd>A unique and unchanging identifier for a notice. Need not be an
+URL. <a class="footnote-reference" href="#id4" id="id2" name="id2">[†]</a></dd>
+</dl>
+<table class="docutils footnote" frame="void" id="id3" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1" name="id3">[*]</a></td><td>May be the profile URL, if it's defined not to change or be
+re-used. The profile URL of some services includes the nickname,
+and some let the user change his/her nickname. This user's profile
+URL may change from '<a class="reference" href="/web/20080912062848/http://example.net/~john">http://example.net/~john</a>' to
+'<a class="reference" href="/web/20080912062848/http://example.net/~johnsmith">http://example.net/~johnsmith</a>' A tag URI, like
+'<a class="reference" href="tag:example.net,2008:user:1">tag:example.net,2008:user:1</a>' may be more appropriate here.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id4" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id2" name="id4">[†]</a></td><td>IWBNI the notice URI is used everywhere the notice is
+published; for example, in any RSS feeds.</td></tr>
+</tbody>
+</table>
+</div>
+<div class="section">
+<h1><a id="initiation" name="initiation">Initiation</a></h1>
+<p>The user submits their profile URL <a class="footnote-reference" href="#id6" id="id5" name="id5">[‡]</a> to the remote service somehow --
+for example, with an HTML form on the remote service's Web site.</p>
+<table class="docutils footnote" frame="void" id="id6" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id5" name="id6">[‡]</a></td><td>For OAuth Discovery, this is the &quot;protected resource&quot;. It may
+be more correct that the protected resource is the postNotice URL
+(see below), but the listener will be more familiar with their own
+profile URL. So there will have to be discovery of the postNotice
+URL anyways, and it might as well all be done in one step.</td></tr>
+</tbody>
+</table>
+</div>
+<div class="section">
+<h1><a id="discovery" name="discovery">Discovery</a></h1>
+<p>The remote service recovers a YADIS document from the profile URL, as
+described in OAuth Discovery.</p>
+<p>The request token service must have a LocalID associated with it,
+containing the identifier URI for the listener.</p>
+<p>The following two extra services must be included in the YADIS
+document, with accompanying URIs.</p>
+<dl class="docutils">
+<dt><a class="reference" href="/web/20080912062848/http://openmicroblogging.org/protocol/0.1/postNotice">http://openmicroblogging.org/protocol/0.1/postNotice</a></dt>
+<dd>Post Notice URL, as defined below.</dd>
+<dt><a class="reference" href="/web/20080912062848/http://openmicroblogging.org/protocol/0.1/updateProfile">http://openmicroblogging.org/protocol/0.1/updateProfile</a></dt>
+<dd>Update Profile URL, as defined below.</dd>
+</dl>
+<p>If any of the URIs is unavailable, the remote service MUST stop
+processing.</p>
+</div>
+<div class="section">
+<h1><a id="authorization" name="authorization">Authorization</a></h1>
+<p>The remote service must go through the OAuth 1.0 dance to get
+authorization to post notices and update profiles.</p>
+<p>In all OAuth, the consumer key should be the root URL for the
+microblogging service, if available. The secret should be the blank
+string (''), unless the remote server and local service have negotiated
+another key. Such negotiation is out-of-scope for this document, and we
+assume an &quot;open&quot; network of microblogging services. But if you want to
+have that kind of network, do it with this key.</p>
+<p>The remote service MUST do OAuth for every new listener, regardless of
+whether they've already received authorization for posting to the
+given postNotice URL. See <a class="reference" href="#posting-a-notice">Posting a Notice</a> below.</p>
+<div class="section">
+<h2><a id="request-token" name="request-token">Request token</a></h2>
+<p>The remote service uses the defined requestToken URL to get a request
+token.</p>
+<p>In the request token HTTP request, the remote service MUST send the
+following additional parameter(s):</p>
+<dl class="docutils">
+<dt>omb_version</dt>
+<dd>'<a class="reference" href="/web/20080912062848/http://openmicroblogging.org/protocol/0.1">http://openmicroblogging.org/protocol/0.1</a>'</dd>
+<dt>omb_listener</dt>
+<dd>The identifier URI for the listener.</dd>
+</dl>
+<p>In the results for the request token request, the local service MUST
+send the following additional parameters:</p>
+<dl class="docutils">
+<dt>omb_version</dt>
+<dd>'<a class="reference" href="/web/20080912062848/http://openmicroblogging.org/protocol/0.1">http://openmicroblogging.org/protocol/0.1</a>'</dd>
+</dl>
+</div>
+<div class="section">
+<h2><a id="user-authorization" name="user-authorization">User authorization</a></h2>
+<p>In requesting user authorization, the remote service must send the
+following parameters:</p>
+<dl class="docutils">
+<dt>omb_version</dt>
+<dd>'<a class="reference" href="/web/20080912062848/http://openmicroblogging.org/protocol/0.1">http://openmicroblogging.org/protocol/0.1</a>'.</dd>
+<dt>omb_listener</dt>
+<dd>The identifier URI for the listener.</dd>
+<dt>omb_listenee</dt>
+<dd>The identifier URI for the listenee.</dd>
+<dt>omb_listenee_profile</dt>
+<dd>The profile URL of the listenee.</dd>
+<dt>omb_listenee_nickname</dt>
+<dd>The nickname of the listenee.</dd>
+<dt>omb_listenee_license</dt>
+<dd>The default license URL for the listenee's stream. Typically the
+URL of a Creative Commons license, with the Attribution license
+being heavily encouraged. CC0 quitclaim also pretty good. The
+local service MAY reject listenees if their licenses are
+incompatible with the service.</dd>
+</dl>
+<p>The remote service should send as many of the following parameters as
+possible. This will help the user decide if they really want to allow
+the listening to happen, and allow the local service to store a copy
+of the listenee's profile.</p>
+<dl class="docutils">
+<dt>omb_listenee_fullname</dt>
+<dd>The full name of the listenee. Up to 255 chars.</dd>
+<dt>omb_listenee_homepage</dt>
+<dd>The home page of the listenee (may be distinct from the profile
+URL).</dd>
+<dt>omb_listenee_bio</dt>
+<dd>A brief biography of the listenee; less than 140 chars.</dd>
+<dt>omb_listenee_location</dt>
+<dd>Physical location of the listenee; less that 255 chars. No fixed
+structure, but &quot;Locality, Region, Country&quot; or &quot;Locality, Country&quot;
+or &quot;Locality, Region&quot; recommended.</dd>
+<dt>omb_listenee_avatar</dt>
+<dd>URL of a 96px by 96px image in PNG, GIF or JPEG format representing
+the listenee.</dd>
+</dl>
+<p>The local service, in a successful response, must return the
+following additional parameters:</p>
+<dl class="docutils">
+<dt>omb_version</dt>
+<dd>'<a class="reference" href="/web/20080912062848/http://openmicroblogging.org/protocol/0.1">http://openmicroblogging.org/protocol/0.1</a>'.</dd>
+<dt>omb_listener_nickname</dt>
+<dd>A nickname for the listener.</dd>
+<dt>omb_listener_profile</dt>
+<dd>The profile URL for the listener, possibly cleaned up or
+canonicalized.</dd>
+</dl>
+<p>It should return as many of the following as possible:</p>
+<dl class="docutils">
+<dt>omb_listener_fullname</dt>
+<dd>The full name of the listener. Up to 255 chars.</dd>
+<dt>omb_listener_homepage</dt>
+<dd>The home page of the listener (may be distinct from the profile
+URL).</dd>
+<dt>omb_listener_bio</dt>
+<dd>A brief biography of the listener; less than 140 chars.</dd>
+<dt>omb_listener_location</dt>
+<dd>Physical location of the listener; less that 255 chars. No fixed
+structure, but &quot;Locality, Region, Country&quot; or &quot;Locality, Country&quot;
+or &quot;Locality, Region&quot; recommended.</dd>
+<dt>omb_listener_avatar</dt>
+<dd>URL of a 96px by 96px image in PNG, GIF or JPEG format representing
+the listener.</dd>
+</dl>
+<p>This will allow the remote service to display information about the
+listener in the listenee's &quot;listeners&quot; or &quot;subscribers&quot; list.</p>
+</div>
+<div class="section">
+<h2><a id="access-token" name="access-token">Access token</a></h2>
+<p>The access token step of the OAuth protocol requires no additional
+parameters.</p>
+</div>
+</div>
+<div class="section">
+<h1><a id="posting-a-notice" name="posting-a-notice">Posting a Notice</a></h1>
+<p>To post a notice to the local service, the remote service sends an HTTP
+POST message to the postNotice URL discovered above. The message must
+use OAuth authorization. The message must also include the following
+parameters:</p>
+<dl class="docutils">
+<dt>omb_version</dt>
+<dd>'<a class="reference" href="/web/20080912062848/http://openmicroblogging.org/protocol/0.1">http://openmicroblogging.org/protocol/0.1</a>'.</dd>
+<dt>omb_listenee</dt>
+<dd>The identifier URI for the listenee.</dd>
+<dt>omb_notice</dt>
+<dd>The notice URI.</dd>
+<dt>omb_notice_content</dt>
+<dd>The content of the notice. No maximum, but 140 chars is recommended.</dd>
+</dl>
+<p>The message may include the following parameters:</p>
+<dl class="docutils">
+<dt>omb_notice_url</dt>
+<dd>The URL of the notice, if the notice is retrievable.</dd>
+<dt>omb_notice_license</dt>
+<dd>The URL of the license for the notice, if different from the
+listenee's default license.</dd>
+<dt>omb_seealso</dt>
+<dd>URL of additional content for the notice; for example, an image,
+video, or audio file.</dd>
+<dt>omb_seealso_disposition</dt>
+<dd>One of 'link' or 'inline', to recommend how the extra data should
+be shown. Default 'link'.</dd>
+<dt>omb_seealso_mediatype</dt>
+<dd>Internet Media Type of the see-also data. Advisory, probably
+shouldn't be trusted.</dd>
+<dt>omb_seealso_license</dt>
+<dd>License for the attached data. May be distinct from the notice's
+license (if they're passing along someone else's content).</dd>
+</dl>
+<p>The local service should include the following parameters in its
+response:</p>
+<dl class="docutils">
+<dt>omb_version</dt>
+<dd>'<a class="reference" href="/web/20080912062848/http://openmicroblogging.org/protocol/0.1">http://openmicroblogging.org/protocol/0.1</a>'.</dd>
+</dl>
+<p>The local service makes no guarantees about the delivery of the notice
+to anyone.</p>
+<p>The remote service SHOULD NOT send a message with the same notice URL
+to the same postNotice URL more than once. <a class="footnote-reference" href="#id9" id="id7" name="id7">[§]</a> If the request returns
+a 403 Unauthorized message, the remote service SHOULD NOT post
+messages to the same URL again with the same listenee, until another
+listener has gone through the OAuth dance. <a class="footnote-reference" href="#id10" id="id8" name="id8">[¶]</a></p>
+<table class="docutils footnote" frame="void" id="id9" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id7" name="id9">[§]</a></td><td>A half-assed optimization. A local service may have a lot of
+listeners listening to the same listenee. It would be pointless to
+have the remote service post the same notice 100 times to the same
+service. However, if the local service wants fine-grained control,
+it can have a different postNotice URL for each listener.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id10" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id8" name="id10">[¶]</a></td><td>If there's one postNotice URL per listener, the 403 message
+means the listener has told the local service not to allow posting
+any more (&quot;unsubscribed&quot;). If there's one postNotice URL per local
+service, it means that the count of listeners has dropped to 0.</td></tr>
+</tbody>
+</table>
+</div>
+<div class="section">
+<h1><a id="updating-a-profile" name="updating-a-profile">Updating a profile</a></h1>
+<p>If the listenee's profile information changes, the remote service MAY
+send an HTTP POST message to to the updateProfile URL to tell the
+local service about the change.</p>
+<p>The message must use OAuth authorization. The message must also
+include the following parameters:</p>
+<dl class="docutils">
+<dt>omb_version</dt>
+<dd>'<a class="reference" href="/web/20080912062848/http://openmicroblogging.org/protocol/0.1">http://openmicroblogging.org/protocol/0.1</a>'.</dd>
+<dt>omb_listenee</dt>
+<dd>The identifier URI for the listenee.</dd>
+</dl>
+<p>The message may include any of the following parameters:</p>
+<dl class="docutils">
+<dt>omb_listenee_profile</dt>
+<dd>The profile URL of the listenee.</dd>
+<dt>omb_listenee_nickname</dt>
+<dd>The nickname of the listenee.</dd>
+<dt>omb_listenee_license</dt>
+<dd>The default license URL for the listenee's stream. A change in the
+default license only applies to future notices; notices previous
+to the update SHOULD be treated as under the old license.</dd>
+<dt>omb_listenee_fullname</dt>
+<dd>The full name of the listenee. Up to 255 chars.</dd>
+<dt>omb_listenee_homepage</dt>
+<dd>The home page of the listenee.</dd>
+<dt>omb_listenee_bio</dt>
+<dd>A brief biography of the listenee; less than 140 chars.</dd>
+<dt>omb_listenee_location</dt>
+<dd>Physical location of the listenee; less that 255 chars.</dd>
+<dt>omb_listenee_avatar</dt>
+<dd>URL of a 96px by 96px image in PNG, GIF or JPEG format representing
+the listenee.</dd>
+</dl>
+<p>Missing parameters should not be construed to mean that the profile
+field has been blanked. The remote service MUST set the parameter to
+an empty string to show that the field is blank.</p>
+</div>
+<div class="section">
+<h1><a id="references" name="references">References</a></h1>
+<ul class="simple">
+<li>OAuth: <a class="reference" href="/web/20080912062848/http://oauth.net/">http://oauth.net/</a></li>
+<li>OAuth Discovery: <a class="reference" href="/web/20080912062848/http://oauth.net/discovery/1.0">http://oauth.net/discovery/1.0</a></li>
+<li>XRDS Simple: <a class="reference" href="/web/20080912062848/http://xrds-simple.net/core/1.0/">http://xrds-simple.net/core/1.0/</a></li>
+</ul>
+</div>
+</div>
+</body>
+</html>
+
+
+
+
+
+<!--
+     FILE ARCHIVED ON 6:28:48 Sep 12, 2008 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 11:07:54 Apr 10, 2015.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
